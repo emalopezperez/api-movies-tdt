@@ -52,7 +52,34 @@ const login = async (req, res) => {
   res.status(200).json({ usuario: user, token })
 };
 
+const profile = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    const userProfile = {
+      _id: user._id,
+      nombre: user.nombre,
+      apellido: user.apellido,
+      email: user.email,
+    };
+
+    res.status(200).json({ profile: userProfile });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
+
 module.exports = {
   signUp,
-  login
+  login,
+  profile
 };
