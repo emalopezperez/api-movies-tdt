@@ -26,12 +26,21 @@ const signUp = async (req, res) => {
 
     await newUser.save();
 
-    return res.status(200).send({ status: 'success', message: 'Usuario registrado correctamente' });
+    return res.status(200).send({
+      status: 'success',
+      message: 'Usuario registrado correctamente',
+      usuario: {
+        _id: newUser._id,
+        nombre: newUser.nombre,
+        email: newUser.email,
+      },
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).send({ status: 'error', message: 'Error al registrar usuario' });
   }
 };
+
 
 const login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email })
