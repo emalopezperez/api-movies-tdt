@@ -67,6 +67,7 @@ const profile = async (req, res) => {
       nombre: user.nombre,
       apellido: user.apellido,
       email: user.email,
+      movies_likes: user.moviesLiked
     };
 
     res.status(200).json({ profile: userProfile });

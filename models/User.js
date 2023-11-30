@@ -9,7 +9,6 @@ const UserScheme = new mongoose.Schema(
     },
     apellido: {
       type: String,
-      required: true,
       trim: true
     },
     email: {
