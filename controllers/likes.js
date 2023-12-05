@@ -15,7 +15,7 @@ const likeMovie = async (req, res) => {
     const movieExists = user.moviesLiked.some(movie => movie.id === id);
 
     if (movieExists) {
-      return res.status(400).json({ message: 'La película ya está en la lista' });
+      return res.status(400).json({ message: 'La película ya está en la lista', alreadyAdded: true });
     }
 
     user.moviesLiked.push({ titulo, descripcion, imagen, id });
