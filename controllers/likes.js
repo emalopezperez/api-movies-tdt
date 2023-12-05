@@ -22,13 +22,14 @@ const likeMovie = async (req, res) => {
 
     await user.save();
 
-    res.status(201).json({ message: 'Película guardada en la lista de favoritos' });
+    res.status(201).json({ message: 'Película guardada en la lista de favoritos', status: true });
 
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
+
 
 const deslike = async (req, res) => {
   const { movieId } = req.body;
@@ -41,7 +42,7 @@ const deslike = async (req, res) => {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
 
-    const movieIndex = user.moviesLiked.findIndex(movie => movie._id.toString() === movieId);
+    const movieIndex = user.moviesLiked.findIndex(movie => movie.id === movieId);
 
     if (movieIndex === -1) {
       return res.status(400).json({ message: 'La película no está en la lista' });
@@ -58,6 +59,7 @@ const deslike = async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
+
 
 module.exports = { deslike };
 
