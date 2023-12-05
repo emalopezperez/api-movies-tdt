@@ -23,9 +23,9 @@ const UserScheme = new mongoose.Schema(
     moviesLiked: [
       {
         id: { type: Number },
-        titulo: { type: String, required: true },
-        descripcion: { type: String, required: true },
-        imagen: { type: String, required: true },
+        titulo: { type: String },
+        descripcion: { type: String },
+        imagen: { type: String },
       }
     ],
 
